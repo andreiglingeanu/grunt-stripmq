@@ -8,11 +8,7 @@ var parse = require('css-parse'),
 function transformMediaQueries (ast, options) {
    ast.stylesheet.rules = ast.stylesheet.rules.reduce(function (rules, rule) {
         if (rule.type === 'media') {
-            rules.concat(getNestedRules(rule));
-
-            if (mediaQuery.match(rule.media, options)) {
-                rules.push.apply(rules, rule.rules);
-            }
+            return rules.concat(getNestedRules(rule));
         } else {
             rules.push(rule);
         }
@@ -41,6 +37,8 @@ function getNestedRules (mediaRule) {
             return rule;
         });
     }
+
+    console.log('here');
 
     return mediaRule.rules.map(function (rule) {
         rule.selectors = rule.selectors.map(function (selector) {

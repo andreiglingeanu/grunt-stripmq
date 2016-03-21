@@ -23,3 +23,7 @@ body {
 }
 
 /* If it's a monochrome screen, show a black background */
+
+.ct-device-container:not(.ct-tablet):not(.ct-mobile) body {
+  background: black;
+}
