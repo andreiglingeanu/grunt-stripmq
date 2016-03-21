@@ -22,7 +22,8 @@ body {
 /* If it's a monochrome screen, show a black background */
 @media (monochrome) {
     body {
-        background: black;
+        background: red;
     }
 }
+
 
