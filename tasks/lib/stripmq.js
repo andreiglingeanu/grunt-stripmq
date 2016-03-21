@@ -5,19 +5,70 @@ var parse = require('css-parse'),
     mediaQuery = require('css-mediaquery');
 
 
-function stripMediaQueries (ast, options) {
+function transformMediaQueries (ast, options) {
    ast.stylesheet.rules = ast.stylesheet.rules.reduce(function (rules, rule) {
         if (rule.type === 'media') {
+            rules.concat(getNestedRules(rule));
+
             if (mediaQuery.match(rule.media, options)) {
                 rules.push.apply(rules, rule.rules);
             }
-        }
-        else {
+        } else {
             rules.push(rule);
         }
         return rules;
     }, []);
     return ast;
+}
+
+function getNestedRules (mediaRule) {
+    if (isMobile(mediaRule.media)) {
+        return mediaRule.rules.map(function (rule) {
+            rule.selectors = rule.selectors.map(function (selector) {
+                return '.ct-device-container.ct-mobile ' + selector;
+            });
+
+            return rule;
+        });
+    }
+
+    if (isTablet(mediaRule.media)) {
+        return mediaRule.rules.map(function (rule) {
+            rule.selectors = rule.selectors.map(function (selector) {
+                return '.ct-device-container.ct-tablet ' + selector;
+            });
+
+            return rule;
+        });
+    }
+
+    return mediaRule.rules.map(function (rule) {
+        rule.selectors = rule.selectors.map(function (selector) {
+            return '.ct-device-container:not(.ct-tablet):not(.ct-mobile) ' + selector;
+        });
+
+        return rule;
+    });
+}
+
+function isMobile (media) {
+    return mediaQuery.match(media, optionsForWidth('24rem'));
+}
+
+function isTablet (media) {
+    return mediaQuery.match(media, optionsForWidth('48rem'));
+}
+
+function optionsForWidth (width) {
+    return {
+        type: 'screen',
+        width: width || 1024,
+        'device-width': width || 1024,
+        height: 768,
+        'device-height': 768,
+        resolution: '1dppx',
+        orientation: 'landscape'
+    }
 }
 
 /**
@@ -40,7 +91,7 @@ function StripMQ(input, options) {
     };
 
     var tree = parse(input);
-    tree = stripMediaQueries(tree, options);
+    tree = transformMediaQueries(tree, options);
     return stringify(tree);
 }
 

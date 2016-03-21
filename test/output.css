@@ -1,1 +1,25 @@
-body{margin:120px;background:url(desktop-background.png);font-size:120%}
+body {
+  background: url('mobile-background.png');
+  margin: 1000px;
+}
+
+/* Change the background for tablets */
+
+.ct-device-container.ct-mobile body {
+  background: url('mobile-background.png');
+  margin: 120px;
+}
+
+/* Change the background again for desktop and increase the font-size */
+
+.ct-device-container.ct-tablet body {
+  background: url('tablet-background.png');
+  font-size: 120%;
+}
+
+.ct-device-container:not(.ct-tablet):not(.ct-mobile) body {
+  background: url('desktop-background.png');
+  font-size: 120%;
+}
+
+/* If it's a monochrome screen, show a black background */
