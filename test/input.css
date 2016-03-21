@@ -27,7 +27,7 @@ body {
 }
 
 /* If it's a monochrome screen, show a black background */
-@media (width: 112px) {
+@media all and (max-width: 47.9em) and (min-width: 34em) {
     body {
         background: black;
     }

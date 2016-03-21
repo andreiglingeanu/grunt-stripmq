@@ -12,7 +12,7 @@ body {
 
 /* Change the background again for desktop and increase the font-size */
 
-.ct-device-container.ct-tablet body {
+.ct-device-container:not(.ct-tablet):not(.ct-mobile) body {
   background: url('tablet-background.png');
   font-size: 120%;
 }
@@ -24,6 +24,6 @@ body {
 
 /* If it's a monochrome screen, show a black background */
 
-.ct-device-container:not(.ct-tablet):not(.ct-mobile) body {
+.ct-device-container.ct-tablet body {
   background: black;
 }

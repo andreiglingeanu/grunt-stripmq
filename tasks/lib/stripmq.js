@@ -38,8 +38,6 @@ function getNestedRules (mediaRule) {
         });
     }
 
-    console.log('here');
-
     return mediaRule.rules.map(function (rule) {
         rule.selectors = rule.selectors.map(function (selector) {
             return '.ct-device-container:not(.ct-tablet):not(.ct-mobile) ' + selector;
@@ -50,11 +48,11 @@ function getNestedRules (mediaRule) {
 }
 
 function isMobile (media) {
-    return mediaQuery.match(media, optionsForWidth('24rem'));
+    return mediaQuery.match(media, optionsForWidth('33.9rem'));
 }
 
 function isTablet (media) {
-    return mediaQuery.match(media, optionsForWidth('48rem'));
+    return mediaQuery.match(media, optionsForWidth('47.9rem'));
 }
 
 function optionsForWidth (width) {
