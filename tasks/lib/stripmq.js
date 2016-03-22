@@ -98,7 +98,7 @@ function StripMQ(input, options) {
 
     var tree = parse(input);
     tree = transformMediaQueries(tree, options);
-    return stringify(tree);
+    return stringify(tree, {compress: false});
 }
 
 module.exports = StripMQ;
