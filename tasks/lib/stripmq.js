@@ -4,17 +4,27 @@ var parse = require('css-parse'),
     stringify = require('css-stringify'),
     mediaQuery = require('css-mediaquery');
 
-
 function transformMediaQueries (ast, options) {
    ast.stylesheet.rules = ast.stylesheet.rules.reduce(function (rules, rule) {
         if (rule.type === 'media') {
             return rules.concat(getNestedRules(rule));
-        } else {
-            rules.push(rule);
         }
-        return rules;
+
+        if (rule.selectors) {
+            return rules.concat([applyPrefix(rule)]);
+        }
+
+        return rules.concat([rule]);
     }, []);
     return ast;
+}
+
+function applyPrefix (rule) {
+    rule.selectors = rule.selectors.map(function (selector) {
+        return ':root:root:root:root .ct-shortcode-preview-modal ' + selector;
+    });
+
+    return rule;
 }
 
 function getNestedRules (mediaRule) {
