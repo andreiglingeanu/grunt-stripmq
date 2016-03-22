@@ -35,7 +35,7 @@ function getNestedRules (mediaRule) {
     if (isMobile(mediaRule.media)) {
         return mediaRule.rules.map(function (rule) {
             rule.selectors = rule.selectors.map(function (selector) {
-                return '.ct-device-container.ct-mobile ' + selector;
+                return ':root:root:root:root .ct-device-container.ct-mobile ' + selector;
             });
 
             return rule;
@@ -45,7 +45,7 @@ function getNestedRules (mediaRule) {
     if (isTablet(mediaRule.media)) {
         return mediaRule.rules.map(function (rule) {
             rule.selectors = rule.selectors.map(function (selector) {
-                return '.ct-device-container.ct-tablet ' + selector;
+                return ':root:root:root:root .ct-device-container.ct-tablet ' + selector;
             });
 
             return rule;
