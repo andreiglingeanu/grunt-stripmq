@@ -10,6 +10,10 @@ function transformMediaQueries (ast, options) {
             return rules.concat(getNestedRules(rule));
         }
 
+        if (rule.selectors && rule.selectors[0] == '@font-face') {
+            return rules.concat([rule]);
+        }
+
         if (rule.selectors) {
             return rules.concat([applyPrefix(rule)]);
         }

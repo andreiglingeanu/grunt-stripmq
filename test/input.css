@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'proxima_nova_extrabold';
+    src: url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.eot');
+    src: url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.woff2') format('woff2'),
+         url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.woff') format('woff'),
+         url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.ttf') format('truetype'),
+         url('../fonts/Proxima Nova/ExtraBold/proximanova-extrabold-webfont.svg#proxima_nova_extrabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background: url('mobile-background.png');
     margin: 1000px;
